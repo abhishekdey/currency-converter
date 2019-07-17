@@ -19,4 +19,11 @@ constructor(private http: HttpClient) {}
             })
         ))
     }
+
+    allowNumeric(keyCode): Boolean {
+        if((keyCode >= 48 && keyCode <=57) || keyCode === 46) {
+            return true;
+        }
+        return false;
+    }
 }
