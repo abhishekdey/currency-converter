@@ -41,24 +41,31 @@ export class AppComponent implements OnInit {
             if(this.fromCurrencyCode && this.toCurrencyCode) {
                 this.store.dispatch(new ConversionAmountAction((number * this.toCurrencyCode) / this.fromCurrencyCode ));
             }
+        } else {   
+            this.store.dispatch(new AmountChangeAction(0));             
+            this.store.dispatch(new ConversionAmountAction(0));
         }
     }
 
     fromCurrencyCodeValuChange(currencyValue) {
         this.fromCurrencyCode = currencyValue;
-        if(this.fromCurrencyCode && this.toCurrencyCode) {
-            let number: number;
-            this.amount$.subscribe(amount => {number = amount} );
-            this.store.dispatch(new ConversionAmountAction((number * this.toCurrencyCode) / this.fromCurrencyCode ));
-        }
+        this.currencyConversion();
     }
 
     toCurrencyCodeValuChange(currencyValue) {
         this.toCurrencyCode = currencyValue;
+        this.currencyConversion();
+    }
+
+    currencyConversion() {
         if(this.fromCurrencyCode && this.toCurrencyCode) {
             let number: number;
             this.amount$.subscribe(amount => {number = amount} );
-            this.store.dispatch(new ConversionAmountAction((number * this.toCurrencyCode) / this.fromCurrencyCode ));
+            if (!isNaN(number)) {
+                this.store.dispatch(new ConversionAmountAction((number * this.toCurrencyCode) / this.fromCurrencyCode ));
+            } else {                
+                this.store.dispatch(new ConversionAmountAction(0));
+            }
         }
     }
 }
