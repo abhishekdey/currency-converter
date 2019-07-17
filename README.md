@@ -1,7 +1,9 @@
 # currency-converter
 
-# node modules installation
+# node version
 install node version 10.0.0 and above
+
+# node modules installation
 npm i  
 
 # start the server
