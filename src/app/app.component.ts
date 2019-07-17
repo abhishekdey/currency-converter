@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromRoot from './reducers';
 import { Observable } from 'rxjs';
+import {CurrencyService} from './services/currency.service';
 
 @Component({
     selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
     public toCurrencyCode;
    
 
-    constructor(public store: Store<fromRoot.State>) {
+    constructor(public store: Store<fromRoot.State>, private currencyService: CurrencyService) {
         this.amount$ = store.select(fromRoot.getAmountState);
         this.currencyRates$ = store.select(fromRoot.getCurrencyRates);
         this.amountConversion$ = store.select(fromRoot.getConversionAmount)
@@ -32,6 +33,12 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.store.dispatch(new CurrencyUpdateAction());
+    }
+
+    allownumeric(keyCode) {
+        if(!this.currencyService.allowNumeric(keyCode)) {
+            event.preventDefault();
+        }
     }
 
     onAmountChange(amount: string) {
