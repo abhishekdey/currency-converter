@@ -1,10 +1,10 @@
 # currency-converter
 
-// node modules installation
+# node modules installation
 npm i  
 
-//start the server
+# start the server
 npm run start
 
-// open in browser
-run http://localhost:4200/
+# open in browser
+http://localhost:4200/
