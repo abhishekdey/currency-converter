@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Currency converter</h3>
+  <label for="amount">Type in amount and select currency:</label>
+  <input id="amount" [ngModel]='amount$ | async' (ngModelChange)="onAmountChange($event)">
+  <select [ngModel]="fromCurrencyCode" (ngModelChange)="fromCurrencyCodeValuChange($event)">
+    <option *ngFor="let currency of (currencyRates$ | async)" [value]="currency.value">{{currency.code}}</option>
+  </select>
+  <br><br>
+  
+  
+  <label for="conversionamount">Converted amount:</label>
+  <input id="conversionamount" [ngModel]='amountConversion$ | async'>
+  <select [ngModel]="toCurrencyCode" (ngModelChange)="toCurrencyCodeValuChange($event)">
+    <option *ngFor="let currency of (currencyRates$ | async)" [value]="currency.value">{{currency.code}}</option>
+  </select>
+</div>
