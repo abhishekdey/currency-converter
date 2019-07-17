@@ -1,7 +1,7 @@
 <div class="container">
   <h3>Currency converter</h3>
   <label for="amount">Type in amount and select currency:</label>
-  <input id="amount" [ngModel]='amount$ | async' (ngModelChange)="onAmountChange($event)">
+  <input id="amount" [ngModel]='amount$ | async' (ngModelChange)="onAmountChange($event)" (keypress)="allownumeric($event.keyCode)">
   <select [ngModel]="fromCurrencyCode" (ngModelChange)="fromCurrencyCodeValuChange($event)">
     <option *ngFor="let currency of (currencyRates$ | async)" [value]="currency.value">{{currency.code}}</option>
   </select>
