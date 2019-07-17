@@ -13,4 +13,6 @@
   <select [ngModel]="toCurrencyCode" (ngModelChange)="toCurrencyCodeValuChange($event)">
     <option *ngFor="let currency of (currencyRates$ | async)" [value]="currency.value">{{currency.code}}</option>
   </select>
+
+  <a class="disclaimer" href="https://api.exchangeratesapi.io/latest" target="_blank">Disclaimer</a>
 </div>
